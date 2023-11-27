@@ -21,17 +21,9 @@ func main() {
 		http.Handle("/", http.FileServer(http.Dir("./public")))
 	}
 
-	http.Handle("/api/feed", &home{})
 	http.Handle("/api/home", &home{})
 
 	log.Fatal(listener(portStr, nil))
-}
-
-func cacheControlMiddleware(h http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Cache-Control", "public, max-age=300")
-		h.ServeHTTP(w, r)
-	})
 }
 
 type home struct{}
