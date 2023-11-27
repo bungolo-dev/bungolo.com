@@ -10,6 +10,7 @@ import (
 )
 
 func main() {
+
 	port := flag.Int("port", -1, "specify a port to use http rather than AWS Lambda")
 	flag.Parse()
 	listener := gateway.ListenAndServe
@@ -20,9 +21,8 @@ func main() {
 		http.Handle("/", http.FileServer(http.Dir("./public")))
 	}
 
-	http.Handle("/api/feed", feed2json.Handler(
-		feed2json.StaticURLInjector("https://news.ycombinator.com/rss"),
-		nil, nil, nil, cacheControlMiddleware))
+	http.Handle("/api/feed", &home{})
+	http.Handle("/api/home", &home{})
 
 	log.Fatal(listener(portStr, nil))
 }
@@ -34,6 +34,9 @@ func cacheControlMiddleware(h http.Handler) http.Handler {
 	})
 }
 
-func handleRequest(w http.ResponseWriter, r *http.Request) {
+type home struct{}
 
+func (h *home) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Cache-Control", "public, max-age=300")
+	w.Write([]byte("This is my home page"))
 }
