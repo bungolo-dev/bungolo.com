@@ -8,6 +8,6 @@
   GO111MODULE = "on"
 
 [[redirects]]
-  from = "/api/*"
+  from = "/*"
   to = "/.netlify/functions/gateway/:splat"
   status = 200
