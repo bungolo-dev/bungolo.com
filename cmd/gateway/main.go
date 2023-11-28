@@ -25,8 +25,8 @@ var links map[string][]Link = map[string][]Link{
 
 func main() {
 
-	port := flag.Int("port", -1, "specify a port to use http rather than AWS Lambda")
-	flag.Parse()
+	//port := flag.Int("port", -1, "specify a port to use http rather than AWS Lambda")
+	//flag.Parse()
 
 	home := func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Cache-Control", "public, max-age=300")
@@ -35,9 +35,9 @@ func main() {
 	}
 
 	//listener := gateway.ListenAndServe
-	//portStr := ""
+	portStr := ""
 	//if *port != -1 {
-		portStr = fmt.Sprintf(":%d", *port)
+		portStr = fmt.Sprintf(":%d", 8080)
 		listener = http.ListenAndServe
 	//}
 
