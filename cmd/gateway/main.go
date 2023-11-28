@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/carlmjohnson/gateway"
+	//"github.com/carlmjohnson/gateway"
 )
 
 type Link struct {
@@ -30,17 +30,16 @@ func main() {
 
 	home := func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Cache-Control", "public, max-age=300")
-		tmpl := template.Must(template.ParseFiles("./index.html"))
+		tmpl := template.Must(template.ParseFiles("../../public/index.html"))
 		tmpl.Execute(w, links)
 	}
 
-	listener := gateway.ListenAndServe
-	portStr := ""
-	if *port != -1 {
+	//listener := gateway.ListenAndServe
+	//portStr := ""
+	//if *port != -1 {
 		portStr = fmt.Sprintf(":%d", *port)
 		listener = http.ListenAndServe
-		
-	}
+	//}
 
  http.HandleFunc("/", home)
 	log.Fatal(listener(portStr, nil))
