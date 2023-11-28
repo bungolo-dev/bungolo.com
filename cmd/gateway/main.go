@@ -42,7 +42,6 @@ func main() {
 		
 	}
 
- http.HandleFunc("/api/*", home)
-
+ http.HandleFunc("/", home)
 	log.Fatal(listener(portStr, nil))
 }
