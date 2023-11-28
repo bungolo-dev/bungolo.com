@@ -1,5 +1,8 @@
+[pramble]
+  command = "chmod +x ./build.sh"
+
 [build]
-  command = "sh ./build.sh"
+  command = "./build.sh"
   functions = "functions"
   publish = "public"
 
