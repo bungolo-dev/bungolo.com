@@ -39,8 +39,10 @@ func main() {
 	if *port != -1 {
 		portStr = fmt.Sprintf(":%d", *port)
 		listener = http.ListenAndServe
-		http.HandleFunc("/", home)
+		
 	}
+
+ http.HandleFunc("/", home)
 
 	log.Fatal(listener(portStr, nil))
 }
