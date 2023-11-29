@@ -43,7 +43,7 @@ func main() {
 	portStr := ""
 	if *port != -1 {
 		portStr = fmt.Sprintf(":%d", 8080)
-		listener := http.ListenAndServe
+		listener = http.ListenAndServe
 	}
 
  http.HandleFunc("/", home)
