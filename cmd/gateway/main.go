@@ -30,7 +30,7 @@ func main() {
 
 	home := func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Cache-Control", "public, max-age=300")
-		tmpl := template.Must(template.ParseFiles("../../public/index.html"))
+		tmpl := template.Must(template.ParseFiles("index.html"))
 		tmpl.Execute(w, links)
 	}
 
